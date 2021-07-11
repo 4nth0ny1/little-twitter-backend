@@ -11,6 +11,10 @@ class TweetsController < ApplicationController
     end 
 
     def create
+        tweet = Tweet.new(tweet_params)
+        if tweet.save
+            render json: tweet
+        end 
     end 
 
     def update
@@ -22,7 +26,7 @@ class TweetsController < ApplicationController
     private 
 
     def tweet_params
-        params.require(:tweets).permit(:content)
+        params.require(:tweet).permit(:content)
     end 
 
 end
