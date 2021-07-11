@@ -7,6 +7,10 @@ class CommentsController < ApplicationController
     end 
 
     def create 
+        comment = Comment.new(comment_params)
+        if comment.save 
+            render json: comment 
+        end 
     end
 
     def update 
@@ -17,7 +21,7 @@ class CommentsController < ApplicationController
 
     private 
 
-    def comments_params 
-        params.require(:comments).permit(:reply, :tweet_id)
+    def comment_params 
+        params.require(:comment).permit(:reply, :tweet_id)
     end 
 end 
